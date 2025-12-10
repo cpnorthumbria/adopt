@@ -1,13 +1,18 @@
-// src/styles/_tokens.scss
 // ========================================
 // Design Tokens (CSS variables)
 // ========================================
 :root {
   /* Brand colours */
-  --cp-purple: #7a1b72;
+  --cp-purple: #7A1A73;
   --cp-purple-light: #c59ac1;
+  --cp-accent: #C928B2;
+  --cp-accent-light: #e95ed4;
+  --cp-accent-dark: #b41c9d;
   --cp-grey-line: rgba(0, 0, 0, 0.12);
-
+  --text-primary: #212529;
+  --text-muted: #6c757d;
+  --white: #fff;
+  --black: #212529;
 
   /* Typography */
   --font-size-base: 16px;
@@ -15,7 +20,15 @@
   --font-size-h2: 1.6rem;
   --font-size-h3: 1.25rem;
   --font-size-h4: 1.1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  --font-size-xxxl: 2.5rem;
+  --font-size-display: 3.5rem;
+  --font-size-display-small: 1.75rem;
   --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+  --line-height-tight: 1;
 
   /* Spacing scale */
   --space-xs: 0.25rem;
@@ -23,10 +36,22 @@
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
+  --space-xxl: 3rem;
 
   /* Radius */
   --radius-card: 0.5rem;
 
+  /* Borders */
   --cp-border-colour: var(--cp-grey-line);
   --cp-border-width: 1px;
+
+  /* Transitions */
+  --transition-speed: 0.15s;
+  --transition-timing: ease-in-out;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-featured: 0 4px 12px rgba(201, 40, 178, 0.3);
 }
