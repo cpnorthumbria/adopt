@@ -1,0 +1,44 @@
+// src/styles/_mixins.scss
+// ========================================
+// SCSS Mixins
+// ========================================
+
+@mixin link-transition {
+  transition: color 0.2s ease;
+}
+
+@mixin flex-between($gap: 0) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin flex-row($justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin rounded-card {
+  border-radius: var(--radius-card);
+}
+
+@mixin bordered {
+  border: var(--cp-border-width) solid var(--cp-border-colour);
+}
+
+@mixin hover-lift($translate: -4px, $shadow: 0 8px 20px rgba(0, 0, 0, 0.08)) {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  transform: translateY(0);
+  box-shadow: none;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY($translate);
+    box-shadow: $shadow;
+  }
+}

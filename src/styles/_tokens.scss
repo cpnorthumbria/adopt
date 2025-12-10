@@ -1,0 +1,32 @@
+// src/styles/_tokens.scss
+// ========================================
+// Design Tokens (CSS variables)
+// ========================================
+:root {
+  /* Brand colours */
+  --cp-purple: #7a1b72;
+  --cp-purple-light: #c59ac1;
+  --cp-grey-line: rgba(0, 0, 0, 0.12);
+
+
+  /* Typography */
+  --font-size-base: 16px;
+  --font-size-h1: 2.25rem;
+  --font-size-h2: 1.6rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h4: 1.1rem;
+  --line-height-base: 1.6;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Radius */
+  --radius-card: 0.5rem;
+
+  --cp-border-colour: var(--cp-grey-line);
+  --cp-border-width: 1px;
+}

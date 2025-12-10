@@ -1,0 +1,60 @@
+// src/styles/_adoption-grid.scss
+@use "./tokens" as *;
+@use "./mixins" as *;
+
+// ========================================
+// Adoption Grid (index page)
+// BEM: adoption-grid__*
+// ========================================
+
+.adoption-grid__heading {
+  margin-bottom: var(--space-md);
+}
+
+/* Card container */
+.adoption-grid__card {
+  @include hover-lift();
+  @include bordered;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* Let cards breathe a little */
+.adoption-grid__card .card-body {
+  padding: var(--space-md);
+}
+
+.adoption-grid__card .card-title {
+  margin-bottom: var(--space-xs);
+}
+
+/* Age line */
+.adoption-grid__meta {
+  margin-bottom: var(--space-xs);
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* CTA line */
+.adoption-grid__cta {
+  margin-bottom: 0;
+  color: var(--cp-purple);
+  transition: color 0.2s ease;
+}
+/* Image subtle zoom on hover/focus */
+.adoption-grid__card .card-img-top {
+  transition: transform 0.25s ease;
+  transform: scale(1);
+}
+
+.adoption-grid__card:hover .card-img-top,
+.adoption-grid__card:focus-within .card-img-top {
+  transform: scale(1.03);
+}
+
+/* When the card is hovered or focused, tint the CTA */
+.adoption-grid__card:hover .adoption-grid__cta,
+.adoption-grid__card:focus-within .adoption-grid__cta {
+  color: var(--cp-purple-light);
+}
+

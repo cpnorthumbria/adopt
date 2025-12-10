@@ -1,0 +1,135 @@
+---
+import type { Cat } from "../data/cats";
+
+interface Props {
+  cat: Cat;
+  previousCatUrl?: string;
+  nextCatUrl?: string;
+}
+
+const { cat, previousCatUrl, nextCatUrl } = Astro.props;
+const carouselId = `${cat.slug}-carousel`;
+const hasVideo = !!cat.videoId;
+const totalSlides = cat.carouselImages.length + (hasVideo ? 1 : 0);
+---
+
+<div class="cat-detail">
+  <div class="backlink">
+    <a href="/" class="backlink__link">← Back to all cats</a>
+  </div>
+
+  <div class="row align-items-start">
+    <!-- Text column -->
+    <div class="col-12 col-lg-6 cat-detail__text">
+      <h2>{cat.name}</h2>
+      <p class="cat-detail__intro">{cat.intro}</p>
+
+      {cat.paragraphs.map((p) => <p>{p}</p>)}
+
+      <div class="keydetails">
+        <h3 class="keydetails__title">Key details</h3>
+        <ul class="keydetails__list">
+          {cat.details.map((item) => (
+            <li>
+              <strong>{item.label}:</strong> {item.value}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="enquiries">
+        <p class="enquiries__item">
+          <strong>Adoption tel:</strong>
+          <a href="tel:+447796203994">07796 203 994</a>
+        </p>
+
+        <p class="enquiries__item">
+          <strong>Email:</strong>
+          <a href="mailto:adoption@northumbria.cats.org.uk">
+            adoption@northumbria.cats.org.uk
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Carousel column -->
+    <div class="col-12 col-lg-6 cat-detail__carousel-col">
+      <div
+        id={carouselId}
+        class="carousel slide carousel--media carousel--rounded"
+        data-bs-ride="carousel"
+        data-bs-interval="7000"
+        data-bs-pause="hover"
+        data-bs-touch="true"
+      >
+        <div class="carousel-inner">
+          {cat.carouselImages.map((image, index) => (
+            <div class={`carousel-item ${index === 0 ? "active" : ""}`}>
+              <img
+                src={image.src}
+                class="d-block w-100 img-fluid"
+                alt={image.alt}
+              />
+            </div>
+          ))}
+
+          {cat.videoId && (
+            <div class="carousel-item">
+              <div class="media-wrapper">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${cat.videoId}`}
+                  title={`${cat.name} video`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {totalSlides > 1 && (
+          <>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target={`#${carouselId}`}
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target={`#${carouselId}`}
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+
+  {(previousCatUrl || nextCatUrl) && (
+    <div class="next-back">
+      <hr class="next-back__separator" />
+
+      <div class="next-back__links">
+        {previousCatUrl && (
+          <a href={previousCatUrl} class="next-back__link">
+            ← Previous
+          </a>
+        )}
+
+        {nextCatUrl && (
+          <a href={nextCatUrl} class="next-back__link">
+            Next →
+          </a>
+        )}
+      </div>
+    </div>
+  )}
+</div>

@@ -1,0 +1,132 @@
+// src/styles/_cat-detail.scss
+@use "./tokens" as *;
+@use "./mixins" as *;
+
+// ========================================
+// Cat Detail Panel
+// ========================================
+
+.cat-detail {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg) var(--space-md);
+  @include rounded-card;
+  @include bordered;
+  background-color: #ffffff;
+}
+
+.cat-detail__intro {
+  font-weight: 500;
+}
+
+/* Column spacing on small screens */
+@media (max-width: 991.98px) {
+  .cat-detail__text {
+    margin-top: 0;
+  }
+
+  .cat-detail__carousel-col {
+    margin-top: var(--space-md);
+  }
+}
+
+/* Reduce top spacing in cat detail panel on mobile */
+@media (max-width: 575.98px) {
+  .cat-detail {
+    padding-top: var(--space-md);
+  }
+}
+
+// Back link above cat content
+.backlink {
+  margin-bottom: var(--space-sm);
+}
+
+.backlink__link {
+  font-size: 0.95rem;
+}
+
+
+// ========================================
+// Key Details Panel
+// ========================================
+
+.keydetails {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  padding-bottom: calc(var(--space-md) + 0.5rem);
+  @include rounded-card;
+  background-color: var(--cp-purple);
+  color: #ffffff;
+}
+
+.keydetails__title {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.keydetails__list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: var(--space-xs);
+  column-gap: var(--space-md);
+}
+
+.keydetails__list strong {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Two columns for key details on small+ screens */
+@media (min-width: 576px) {
+  .keydetails__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ========================================
+// Enquiries
+// ========================================
+
+.enquiries {
+  margin-top: var(--space-sm);
+}
+
+.enquiries__item {
+  margin-bottom: var(--space-xs);
+  line-height: var(--line-height-base);
+}
+
+// ========================================
+// Next / Back Navigation
+// ========================================
+
+.next-back {
+  margin-top: var(--space-md);
+}
+
+.next-back__separator {
+  border: none;
+  border-top: 1px solid var(--cp-grey-line);
+  margin-bottom: var(--space-md);
+}
+
+.next-back__links {
+  @include flex-row(center, center, 3rem);
+}
+
+.next-back__link {
+  font-size: 1rem;
+  @include link-transition;
+}
+
+/* Responsive spacing for nav */
+@media (max-width: 575.98px) {
+  .next-back__links {
+    gap: 2rem;
+  }
+}

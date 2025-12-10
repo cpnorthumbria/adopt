@@ -1,0 +1,58 @@
+// src/styles/_header.scss
+@use "./tokens" as *;
+@use "./mixins" as *;
+
+// ========================================
+// Site Header (BEM: site-header__*)
+// ========================================
+
+.site-header {
+  @include flex-between(var(--space-md));
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-xl);
+}
+
+.site-header__title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header__title {
+  margin-bottom: 0.2rem;
+  font-size: calc(var(--font-size-h1) * 1.2);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.site-header__subtitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--cp-purple);
+  margin:0;
+  opacity: 0.85;
+}
+
+.site-header__social {
+  @include flex-row(flex-start, center, var(--space-md));
+}
+
+.site-header__social-link {
+  svg {
+    fill: var(--cp-purple);
+    transition: fill 0.2s ease;
+  }
+
+  &:hover svg,
+  &:focus svg {
+    fill: var(--cp-purple-light);
+  }
+}
+
+/* Mobile: stack title + icons nicely */
+@media (max-width: 575.98px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

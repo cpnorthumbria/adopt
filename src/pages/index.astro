@@ -1,0 +1,42 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { cats } from "../data/cats";
+---
+
+<MainLayout title="Cats Protection Northumbria - Adoptions">
+  <h2 class="adoption-grid__heading">Cats available for adoption</h2>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 adoption-grid">
+    {cats.map((cat) => {
+      const ageDetail = cat.details.find((item) => item.label === "Age");
+      const age = ageDetail ? ageDetail.value : null;
+
+      return (
+        <div class="col">
+          <a href={`/cats/${cat.slug}/`}>
+            <div class="card h-100 adoption-grid__card">
+              <img
+                src={cat.carouselImages[0]?.src}
+                class="card-img-top"
+                alt={cat.carouselImages[0]?.alt || cat.name}
+              />
+              <div class="card-body">
+                <h3 class="card-title">{cat.name}</h3>
+
+                {age && (
+                  <p class="adoption-grid__meta">
+                    Age: {age}
+                  </p>
+                )}
+
+                <p class="adoption-grid__cta">
+                  Find out more about {cat.name} →
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      );
+    })}
+  </div>
+</MainLayout>

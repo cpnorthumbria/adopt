@@ -1,0 +1,38 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import CatDetail from "../../components/CatDetail.astro";
+import { cats } from "../../data/cats";
+
+// 1) Tell Astro which /cats/:slug pages to build
+export function getStaticPaths() {
+  return cats.map((cat) => ({
+    params: { slug: cat.slug }
+  }));
+}
+
+// 2) For each page, read the slug from the URL
+const { slug } = Astro.params;
+
+// 3) Find the current cat
+const currentIndex = cats.findIndex((cat) => cat.slug === slug);
+const cat = currentIndex >= 0 ? cats[currentIndex] : null;
+
+// 4) Work out previous / next cats for navigation
+const previousCat = currentIndex > 0 ? cats[currentIndex - 1] : null;
+const nextCat = currentIndex < cats.length - 1 ? cats[currentIndex + 1] : null;
+
+const previousCatUrl = previousCat ? `/cats/${previousCat.slug}/` : undefined;
+const nextCatUrl = nextCat ? `/cats/${nextCat.slug}/` : undefined;
+
+if (!cat) {
+  throw new Error(`Cat not found for slug: ${slug}`);
+}
+---
+
+<MainLayout title={`Adopt ${cat.name} - Tyneside Cat Centre`}>
+  <CatDetail
+    cat={cat}
+    previousCatUrl={previousCatUrl}
+    nextCatUrl={nextCatUrl}
+  />
+</MainLayout>
